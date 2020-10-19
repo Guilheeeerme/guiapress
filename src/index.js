@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
-require("dotenv").config();
+const connectionDB = require("./database/database");
+
+// prettier-ignore
+connectionDB.authenticate().then(() => {
+  console.log("Connection made to MySQL");
+}).catch((err) => console.log("ERROOO"));
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
