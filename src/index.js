@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const connectionDB = require("./database/database");
+const morgan = require("morgan");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
@@ -18,6 +19,8 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(morgan("dev"));
 
 app.use("/", categoriesController);
 app.use("/", articlesController);

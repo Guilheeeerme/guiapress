@@ -27,9 +27,11 @@ router.get("/admin/categories", (req, res) => {
   });
 });
 
+// Deletando via POST, dados vem do input hidden
 router.post("/categories/delete", (req, res) => {
   const { id } = req.body;
   if (id) {
+    // Garantindo que é number
     if (!isNaN(id)) {
       Category.destroy({
         where: {
