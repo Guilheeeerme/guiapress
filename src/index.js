@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const connectionDB = require("./database/database");
 
+const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./articles/ArticlesController");
+
 // prettier-ignore
 connectionDB.authenticate().then(() => {
   console.log("Connection made to MySQL");
@@ -12,6 +15,9 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 app.get("/", (req, res) => {
   res.render("index");
