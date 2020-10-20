@@ -15,7 +15,7 @@ router.post("/categories/save", (req, res) => {
       slug: slugify(title),
     }).then(() => res.redirect("/"));
   } else {
-    res.redirect("admin/categories/new");
+    res.redirect("/admin/categories/new");
   }
 });
 
@@ -25,6 +25,23 @@ router.get("/admin/categories", (req, res) => {
       categories,
     });
   });
+});
+
+router.post("/categories/delete", (req, res) => {
+  const { id } = req.body;
+  if (id) {
+    if (!isNaN(id)) {
+      Category.destroy({
+        where: {
+          id,
+        },
+      }).then(() => res.redirect("/admin/categories"));
+    } else {
+      res.redirect("/admin/categories");
+    }
+  } else {
+    res.redirect("/admin/categories");
+  }
 });
 
 module.exports = router;
