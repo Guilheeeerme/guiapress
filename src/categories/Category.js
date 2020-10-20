@@ -6,4 +6,6 @@ const Category = connection.define("categories", {
   slug: { type: Sequelize.STRING, allowNull: false },
 });
 
+// Category.sync({ force: true }); // Executar uma vez apenas para sincronizar
+
 module.exports = Category;
