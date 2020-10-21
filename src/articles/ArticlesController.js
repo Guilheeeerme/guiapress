@@ -5,9 +5,10 @@ const Article = require("../articles/Article");
 const slugify = require("slugify");
 
 router.get("/admin/articles", (req, res) => {
-  res.send("Rota de artigos");
+  res.render("admin/articles/index");
 });
 
+// Faz a busca no DB, renderiza a view com Form POST já com os dados buscados, no then
 router.get("/admin/articles/new", (req, res) => {
   Category.findAll().then((categories) => {
     res.render("admin/articles/new", { categories });
