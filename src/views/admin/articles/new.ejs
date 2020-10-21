@@ -17,6 +17,7 @@
           /><br />
           <textarea
             class="form-control"
+            id="article"
             name="body"
             placeholder="Escreva o artigo aqui"
           ></textarea
@@ -28,3 +29,12 @@
   </div>
 </body>
 <%- include('../../partials/footer.ejs') %>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: "#article", // Nome do id da textarea
+    plugins: [
+      "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons",
+    ],
+  });
+</script>
