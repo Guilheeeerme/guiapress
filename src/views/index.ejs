@@ -1,5 +1,26 @@
-<%- include('./partials/header.ejs') %>
+<!-- prettier-ignore  -->
+<%- include('./partials/header.ejs') %> 
+<%- include('./partials/homenavbar.ejs') %>
 <body>
-  <h1>Testando view engine</h1>
+  <div class="container">
+    <hr />
+    <div class="jumbotron">
+      <h1 class="display-4">Bem vindo</h1>
+      <p class="lead">Este é um simples blog do Guia do programador !!</p>
+      <hr class="my-4" />
+    </div>
+    <hr />
+    <% articles.forEach(article => { %>
+    <div class="card">
+      <div class="card-header">
+        <h1><%= article.title %></h1>
+      </div>
+      <div class="card-body">
+        <a class="btn btn-primary" href="#">Ler artigo</a>
+      </div>
+    </div>
+    <br />
+    <% }) %>
+  </div>
 </body>
 <%- include('./partials/footer.ejs') %>
