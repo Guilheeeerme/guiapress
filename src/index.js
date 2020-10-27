@@ -54,6 +54,26 @@ app.get("/:slug", (req, res) => {
     });
 });
 
+app.get("/category/:slug", (req, res) => {
+  const { slug } = req.params;
+  Category.findOne({
+    where: { slug },
+    include: [{ model: Article }], // Relacionamento
+  })
+    .then((category) => {
+      if (category) {
+        Category.findAll().then((categories) => {
+          res.render("index", { articles: category.articles, categories });
+        });
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch((err) => {
+      res.redirect("/");
+    });
+});
+
 app.listen(3000, () => {
   console.log("Server connected at http://localhost:3000");
 });
